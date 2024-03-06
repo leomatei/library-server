@@ -12,8 +12,18 @@ const schema = buildSchema(`
     author: String
     description: String
   }
+  input BookInput {
+    title: String
+    author: String
+    description: String
+  }
   type Query {
     getBooks: [Book]
+  }
+  type Mutation {
+    createBook(input: BookInput): Book
+    updateBook(id: ID, input: BookInput): Book
+    deleteBook(id: ID): String
   }
 `)
 
@@ -31,8 +41,28 @@ let books = [
 
 // Create a resolver for the hello query
 const root = {
-  hello: () => 'Hello, GraphQL!',
   getBooks: () => books,
+  createBook: ({ input }) => {
+    const newBook = { id: books.length + 1, ...input }
+    books.push(newBook)
+    return newBook
+  },
+  updateBook: ({ id, input }) => {
+    const index = books.findIndex((book) => book.id == id)
+    if (index !== -1) {
+      books[index] = { ...books[index], ...input }
+      return books[index]
+    }
+    return null
+  },
+  deleteBook: ({ id }) => {
+    const index = books.findIndex((book) => book.id == id)
+    if (index !== -1) {
+      books.splice(index, 1)
+      return `Book with ID ${id} deleted successfully.`
+    }
+    return `Book with ID ${id} not found.`
+  },
 }
 
 // Create an Express server
