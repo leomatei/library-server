@@ -19,6 +19,7 @@ const schema = buildSchema(`
   }
   type Query {
     getBooks: [Book]
+    getBook(id: ID): Book
   }
   type Mutation {
     createBook(input: BookInput): Book
@@ -39,9 +40,15 @@ let books = [
   { id: 3, title: 'book3', author: 'author3', description: 'desc3' },
 ]
 
-// Create a resolver for the hello query
 const root = {
   getBooks: () => books,
+  getBook: ({ id }) => {
+    const index = books.findIndex((book) => book.id == id)
+    if (index !== -1) {
+      return books[index]
+    }
+    return null
+  },
   createBook: ({ input }) => {
     const newBook = { id: books.length + 1, ...input }
     books.push(newBook)
