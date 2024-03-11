@@ -74,9 +74,14 @@ const root = {
 
 // Create an Express server
 const app = express()
+
 app.use(cors())
+
 app.use(express.json())
 
+app.use('/', (req, res) => {
+  res.send('server is runing.')
+})
 // Set up the /graphql endpoint with the GraphQL middleware
 app.use(
   '/api',
