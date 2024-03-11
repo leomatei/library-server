@@ -79,9 +79,6 @@ app.use(cors())
 
 app.use(express.json())
 
-app.use('/', (req, res) => {
-  res.send('server is runing.')
-})
 // Set up the /graphql endpoint with the GraphQL middleware
 app.use(
   '/api',
@@ -91,6 +88,9 @@ app.use(
     graphiql: true, // Enable GraphiQL for easy testing
   })
 )
+app.use('/', (req, res) => {
+  res.send('server is runing.')
+})
 
 // Start the server on port 4000
 const PORT = 4000
