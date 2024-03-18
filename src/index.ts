@@ -1,19 +1,33 @@
-const express = require('express')
-const { graphqlHTTP } = require('express-graphql')
-const { buildSchema } = require('graphql')
-const cors = require('cors')
-const { Pool } = require('pg')
+import express, { Express, Request, Response } from 'express'
+import { graphqlHTTP } from 'express-graphql'
+import { buildSchema } from 'graphql'
+import cors from 'cors'
+import pg from 'pg'
+
+const { Pool } = pg
 
 const pool = new Pool({
   connectionString: `${process.env.REACT_APP_POSTGRES_URL}?sslmode=require`,
 })
-
-pool.connect((err) => {
+pool.connect((err: Error | null) => {
   if (err) {
     throw err
   }
   console.log('Connected to PostgreSQL!')
 })
+
+interface Book {
+  id: string
+  title: string
+  author: string
+  description: string
+}
+
+interface BookInput {
+  title: string
+  author: string
+  description: string
+}
 
 const schema = buildSchema(`
   type Book{
@@ -49,7 +63,7 @@ const root = {
       client.release()
     }
   },
-  getBook: async ({ id }) => {
+  getBook: async ({ id }: { id: string }) => {
     const queryText = 'SELECT * FROM book WHERE id = $1'
     const values = [id]
     const client = await pool.connect()
@@ -60,7 +74,7 @@ const root = {
       client.release()
     }
   },
-  createBook: async function createBook({ input }) {
+  createBook: async function createBook({ input }: { input: BookInput }) {
     const queryText =
       'INSERT INTO book (title, author, description) VALUES ($1, $2, $3) RETURNING *'
     const values = [input.title, input.author, input.description]
@@ -72,7 +86,7 @@ const root = {
       client.release()
     }
   },
-  updateBook: async ({ id, input }) => {
+  updateBook: async ({ id, input }: { id: string; input: Book }) => {
     const queryText =
       'UPDATE book SET title = $1, author = $2, description = $3 WHERE id = $4 RETURNING *'
     const values = [input.title, input.author, input.description, id]
@@ -84,7 +98,7 @@ const root = {
       client.release()
     }
   },
-  deleteBook: async ({ id }) => {
+  deleteBook: async ({ id }: { id: string }) => {
     const queryText = 'DELETE FROM book WHERE id = $1'
     const values = [id]
     const client = await pool.connect()
@@ -96,7 +110,7 @@ const root = {
   },
 }
 
-const app = express()
+const app: Express = express()
 app.use(cors())
 app.use(express.json())
 
@@ -108,7 +122,7 @@ app.use(
     graphiql: true,
   })
 )
-app.use('/', (req, res) => {
+app.use('/', (req: express.Request, res: express.Response) => {
   res.send('Server is running!')
 })
 
