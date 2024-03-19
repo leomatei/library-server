@@ -4,12 +4,17 @@
   "description": "node server for my library project",
   "main": "index.ts",
   "scripts": {
-    "build": "rimraf dist && npx tsc",
+    "build": "rimraf .dist && npx tsc",
     "prestart": "npm run build",
-    "start": "node --env-file=.env dist/index.js",
+    "start": "node --env-file=.env .dist/index.js",
     "predev": "npm run build",
-    "dev": "concurrently \"npx tsc -w\" \"nodemon --env-file=.env dist/index.js\""
+    "dev": "concurrently \"npx tsc -w\" \"nodemon --env-file=.env .dist/index.js\""
   },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ],
   "type": "module",
   "author": "leo matei",
   "license": "ISC",
