@@ -1,7 +1,7 @@
 // src/controllers/bookController.ts
 
-import { Book } from '../models/Book.ts'
-import { AppDataSource } from '../appDataSource.ts'
+import { Book } from '../models/Book.js'
+import AppDataSource from '../appDataSource.js'
 
 const bookRepository = AppDataSource.getRepository(Book)
 

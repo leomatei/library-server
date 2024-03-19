@@ -6,11 +6,7 @@
     "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "experimentalDecorators": true,
-    "preserveSymlinks": true,
-    "allowImportingTsExtensions": true,
-    "emitDeclarationOnly": true,
-    "composite": true
+    "experimentalDecorators": true
   },
   "include": [
     "src/**/*",

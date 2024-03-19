@@ -8,7 +8,6 @@ import {
 } from 'typeorm'
 
 @Entity()
-@Unique(['code'])
 export class Book {
   @PrimaryGeneratedColumn('uuid')
   id: string
