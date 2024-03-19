@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from 'express'
 import { graphqlHTTP } from 'express-graphql'
 import { buildSchema } from 'graphql'
 import cors from 'cors'
+import { getBooks } from './controllers/bookController.ts'
 import pg from 'pg'
 
 const { Pool } = pg
@@ -56,6 +57,7 @@ const root = {
   getBooks: async () => {
     const queryText = 'SELECT * FROM book'
     const client = await pool.connect()
+    console.log(getBooks())
     try {
       const { rows } = await client.query(queryText)
       return rows

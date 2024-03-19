@@ -4,7 +4,7 @@
   "description": "node server for my library project",
   "main": "index.ts",
   "scripts": {
-    "build": "rimraf dist && npx tsc",
+    "build": "rimraf dist && npx tsc -p .",
     "prestart": "npm run build",
     "start": "node --env-file=.env dist/index.js",
     "predev": "npm run build",
@@ -25,7 +25,9 @@
     "graphql-http": "^1.22.0",
     "nodemon": "^3.0.3",
     "pg": "^8.11.3",
-    "rimraf": "^5.0.5"
+    "reflect-metadata": "^0.2.1",
+    "rimraf": "^5.0.5",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",

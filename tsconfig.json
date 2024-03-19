@@ -4,8 +4,19 @@
     "moduleResolution": "NodeNext",
     "target": "ES6",
     "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "experimentalDecorators": true,
+    "preserveSymlinks": true,
+    "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": true,
+    "composite": true
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*",
+    "src/controllers",
+    "src/models",
+    "src/appDataSource.ts"
+  ],
   "exclude": ["node_modules"]
 }
