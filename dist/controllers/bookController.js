@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { Book } from '../models/Book.js';
 import AppDataSource from '../constants/appDataSource.js';
-export class BookRepo {
+export class BookController {
     constructor() {
         this.bookRepository = AppDataSource.getRepository(Book);
     }

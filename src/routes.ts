@@ -1,14 +1,14 @@
-import { BookRepo } from './controllers/bookController.js'
+import { BookController } from './controllers/bookController.js'
 import { Book, BookInput } from './constants/interfaces.js'
 
-const BookRepository = new BookRepo()
+const Books = new BookController()
 
 export const root = {
-  getBooks: async () => await BookRepository.getBooks(),
-  getBook: async ({ id }: { id: string }) => await BookRepository.getBook(id),
+  getBooks: async () => await Books.getBooks(),
+  getBook: async ({ id }: { id: string }) => await Books.getBook(id),
   createBook: async ({ input }: { input: BookInput }) =>
-    await BookRepository.createBook(input),
+    await Books.createBook(input),
   updateBook: async ({ id, input }: { id: string; input: Book }) =>
-    await BookRepository.updateBook(id, input),
-  deleteBook: async ({ id }: { id: string }) => BookRepository.deleteBook(id),
+    await Books.updateBook(id, input),
+  deleteBook: async ({ id }: { id: string }) => Books.deleteBook(id),
 }

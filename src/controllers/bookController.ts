@@ -3,7 +3,7 @@ import { Book } from '../models/Book.js'
 import AppDataSource from '../constants/appDataSource.js'
 import { Book as BookObject, BookInput } from '../constants/interfaces.js'
 
-export class BookRepo {
+export class BookController {
   private bookRepository: Repository<Book>
 
   constructor() {

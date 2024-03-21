@@ -7,13 +7,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { BookRepo } from './controllers/bookController.js';
-const BookRepository = new BookRepo();
+import { BookController } from './controllers/bookController.js';
+const Books = new BookController();
 export const root = {
-    getBooks: () => __awaiter(void 0, void 0, void 0, function* () { return yield BookRepository.getBooks(); }),
-    getBook: ({ id }) => __awaiter(void 0, void 0, void 0, function* () { return yield BookRepository.getBook(id); }),
-    createBook: ({ input }) => __awaiter(void 0, void 0, void 0, function* () { return yield BookRepository.createBook(input); }),
-    updateBook: ({ id, input }) => __awaiter(void 0, void 0, void 0, function* () { return yield BookRepository.updateBook(id, input); }),
-    deleteBook: ({ id }) => __awaiter(void 0, void 0, void 0, function* () { return BookRepository.deleteBook(id); }),
+    getBooks: () => __awaiter(void 0, void 0, void 0, function* () { return yield Books.getBooks(); }),
+    getBook: ({ id }) => __awaiter(void 0, void 0, void 0, function* () { return yield Books.getBook(id); }),
+    createBook: ({ input }) => __awaiter(void 0, void 0, void 0, function* () { return yield Books.createBook(input); }),
+    updateBook: ({ id, input }) => __awaiter(void 0, void 0, void 0, function* () { return yield Books.updateBook(id, input); }),
+    deleteBook: ({ id }) => __awaiter(void 0, void 0, void 0, function* () { return Books.deleteBook(id); }),
 };
 //# sourceMappingURL=routes.js.map
