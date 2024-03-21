@@ -8,11 +8,6 @@
     "rootDir": "./src",
     "experimentalDecorators": true
   },
-  "include": [
-    "src/**/*",
-    "src/controllers",
-    "src/models",
-    "src/appDataSource.ts"
-  ],
+  "include": ["src/**/*", "src/controllers", "src/models", "src/constants"],
   "exclude": ["node_modules"]
 }

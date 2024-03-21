@@ -4,7 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, DeleteDateColumn, } from 'typeorm';
 let Book = class Book {
 };
 __decorate([
@@ -25,6 +25,9 @@ __decorate([
 __decorate([
     Column({ type: 'varchar' })
 ], Book.prototype, "description", void 0);
+__decorate([
+    DeleteDateColumn()
+], Book.prototype, "deletedAt", void 0);
 Book = __decorate([
     Entity()
 ], Book);

@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm'
-import { Book } from './models/Book.js'
+import { Book } from '../models/Book.js'
 
 const AppDataSource = new DataSource({
   type: 'postgres',
@@ -14,18 +14,18 @@ const AppDataSource = new DataSource({
   subscribers: [],
   migrations: [],
   ssl: {
-    rejectUnauthorized: false, // You may need to set this option if using self-signed certificates, but it's less secure
+    rejectUnauthorized: false,
   },
   extra: {
     ssl: {
-      rejectUnauthorized: false, // Additional option for some PostgreSQL drivers
+      rejectUnauthorized: false,
     },
   },
 })
 AppDataSource.initialize()
   .then(() => {
-    console.log('appdatasource connected')
+    console.log('Connected to db!')
   })
-  .catch((error) => console.log(error))
+  .catch((error) => console.log('Cannot connect to db!', error))
 
 export default AppDataSource

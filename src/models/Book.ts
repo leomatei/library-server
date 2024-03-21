@@ -3,8 +3,8 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  Unique,
   UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm'
 
 @Entity()
@@ -26,4 +26,7 @@ export class Book {
 
   @Column({ type: 'varchar' })
   description: string
+
+  @DeleteDateColumn()
+  deletedAt?: Date
 }
