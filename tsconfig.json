@@ -4,8 +4,10 @@
     "moduleResolution": "NodeNext",
     "target": "ES6",
     "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "experimentalDecorators": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/controllers", "src/models", "src/constants"],
   "exclude": ["node_modules"]
 }
